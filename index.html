@@ -101,8 +101,10 @@
     .behance span { font-size: 1.25rem; line-height: 1; }
     footer { border-top: 1px solid var(--line); color: var(--muted); }
     footer .section { padding: 1.35rem 0; display: flex; justify-content: space-between; font-size: .85rem; }
-    dialog { width: min(94vw, 1320px); height: 94vh; max-height: none; padding: 0; border: 1px solid rgba(255,255,255,.2); border-radius: 1rem; background: #0b0b0b; color: #fff; box-shadow: 0 30px 100px #000; overflow-x: hidden; overflow-y: auto; }
-    dialog::backdrop { background: rgba(0,0,0,.86); backdrop-filter: blur(8px); }
+    .lightbox { position: fixed; inset: 0; z-index: 1000; padding: 3vh 3vw; overflow-y: auto; background: rgba(0,0,0,.86); backdrop-filter: blur(8px); }
+    .lightbox[hidden] { display: none; }
+    .modal-shell { width: min(94vw, 1320px); margin: 0 auto; border: 1px solid rgba(255,255,255,.2); border-radius: 1rem; background: #0b0b0b; color: #fff; box-shadow: 0 30px 100px #000; overflow: hidden; }
+    body.modal-open { overflow: hidden; }
     .modal-bar { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; justify-content: space-between; padding: .75rem 1rem; border-bottom: 1px solid var(--line); background: #0b0b0b; }
     .modal-title { margin: 0; font-size: .95rem; }
     .close { width: 2.5rem; height: 2.5rem; border: 1px solid var(--line); border-radius: 50%; background: transparent; color: #fff; cursor: pointer; }
@@ -175,10 +177,12 @@
 
   <footer><div class="section"><span>Портфолио графического дизайнера</span><span>2026</span></div></footer>
 
-  <dialog id="lightbox" aria-labelledby="modal-title">
-    <div class="modal-bar"><p class="modal-title" id="modal-title"></p><button class="close" type="button" aria-label="Закрыть">×</button></div>
-    <div class="modal-scroll" id="modal-images"></div>
-  </dialog>
+  <div class="lightbox" id="lightbox" hidden>
+    <div class="modal-shell" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-bar"><p class="modal-title" id="modal-title"></p><button class="close" type="button" aria-label="Закрыть">×</button></div>
+      <div class="modal-scroll" id="modal-images"></div>
+    </div>
+  </div>
 
   <script>
     const dialog = document.querySelector('#lightbox');
@@ -194,12 +198,21 @@
           return image;
         }));
         modalTitle.textContent = button.dataset.title;
-        dialog.showModal();
+        dialog.hidden = false;
+        document.body.classList.add('modal-open');
+        document.querySelector('.close').focus();
       });
     });
-    document.querySelector('.close').addEventListener('click', () => dialog.close());
+    function closeModal() {
+      dialog.hidden = true;
+      document.body.classList.remove('modal-open');
+    }
+    document.querySelector('.close').addEventListener('click', closeModal);
     dialog.addEventListener('click', (event) => {
-      if (event.target === dialog) dialog.close();
+      if (event.target === dialog) closeModal();
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !dialog.hidden) closeModal();
     });
   </script>
 </body>
