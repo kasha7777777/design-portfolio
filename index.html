@@ -87,10 +87,11 @@
     .project:nth-child(4) { grid-column: span 7; }
     .project:nth-child(5) { grid-column: span 5; }
     .project-button {
-      width: 100%; padding: 0; border: 1px solid var(--line); border-radius: 1rem; overflow: hidden; background: var(--surface); color: inherit; cursor: zoom-in; text-align: left;
+      display: block; width: 100%; padding: 0; border: 1px solid var(--line); border-radius: 1rem; overflow: hidden; background: var(--surface); color: inherit; cursor: zoom-in; text-align: left; text-decoration: none;
     }
     .project-media { overflow: hidden; background: #ececea; }
     .project-media img { width: 100%; aspect-ratio: 1440/1085; object-fit: cover; transition: transform .55s cubic-bezier(.2,.8,.2,1); }
+    .project--contain .project-media img { object-fit: contain; object-position: top center; }
     .project-button:hover .project-media img, .project-button:focus-visible .project-media img { transform: scale(1.025); }
     .project-meta { display: flex; justify-content: space-between; gap: 1rem; padding: 1rem 1.05rem 1.1rem; }
     .project-title { font-weight: 600; }
@@ -160,11 +161,11 @@
           <p class="section-note">Нажмите на проект, чтобы рассмотреть его крупнее.</p>
         </div>
         <div class="grid">
-          <article class="project"><button class="project-button" data-images="assets/branding-part-1.png|assets/branding-part-2.png" data-title="Создание логотипа и фирменного стиля"><span class="project-media"><img src="assets/branding-part-1.png" alt="Проект по созданию логотипа и фирменного стиля" loading="lazy"></span><span class="project-meta"><span class="project-title">Логотип и фирменный стиль</span><span class="project-index">01</span></span></button></article>
+          <article class="project project--contain"><a class="project-button" href="branding.html"><span class="project-media"><img src="assets/branding-part-1.png" alt="Проект по созданию логотипа и фирменного стиля" loading="lazy"></span><span class="project-meta"><span class="project-title">Логотип и фирменный стиль</span><span class="project-index">01</span></span></a></article>
           <article class="project"><button class="project-button" data-image="assets/work-4.webp" data-title="Логотип для ювелирного бренда"><span class="project-media"><img src="assets/work-4.webp" alt="Красный логотип для ювелирного бренда и упаковка кольца" loading="lazy"></span><span class="project-meta"><span class="project-title">Ювелирный бренд</span><span class="project-index">02</span></span></button></article>
           <article class="project"><button class="project-button" data-image="assets/work-5.webp" data-title="Карточки для маркетплейсов"><span class="project-media"><img src="assets/work-5.webp" alt="Карточки товаров для маркетплейсов" loading="lazy"></span><span class="project-meta"><span class="project-title">Карточки маркетплейсов</span><span class="project-index">03</span></span></button></article>
           <article class="project"><button class="project-button" data-image="assets/work-6.webp" data-title="Исторические посты для социальных сетей"><span class="project-media"><img src="assets/work-6.webp" alt="Серии исторических постов для социальных сетей" loading="lazy"></span><span class="project-meta"><span class="project-title">Посты для соцсетей</span><span class="project-index">04</span></span></button></article>
-          <article class="project"><button class="project-button" data-image="assets/business-cards.png" data-title="Дизайн визиток"><span class="project-media"><img src="assets/business-cards.png" alt="Подборка дизайнов визиток" loading="lazy"></span><span class="project-meta"><span class="project-title">Визитки</span><span class="project-index">05</span></span></button></article>
+          <article class="project project--contain"><a class="project-button" href="business-cards.html"><span class="project-media"><img src="assets/business-cards.png" alt="Подборка дизайнов визиток" loading="lazy"></span><span class="project-meta"><span class="project-title">Визитки</span><span class="project-index">05</span></span></a></article>
         </div>
       </div>
     </section>
