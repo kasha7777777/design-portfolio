@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080808">
+  <meta name="description" content="Портфолио графического дизайнера: фирменный стиль, логотипы, карточки маркетплейсов, контент для соцсетей и визитки.">
+  <title>Портфолио дизайнера</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23080808'/%3E%3Cpath d='M18 48V16h15c10 0 16 5 16 14s-6 14-16 14h-7v4zm8-12h7c5 0 8-2 8-6s-3-6-8-6h-7z' fill='%23e8e8e8'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --bg: #080808;
+      --surface: #111;
+      --text: #f1f1ef;
+      --muted: #aaa;
+      --line: rgba(255,255,255,.14);
+      --silver: #d8d8d5;
+      --max: 1240px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      opacity: .23;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(255,255,255,.14), transparent 25rem),
+        linear-gradient(115deg, transparent 35%, rgba(255,255,255,.04), transparent 65%);
+    }
+    a { color: inherit; }
+    img { display: block; max-width: 100%; }
+    button { font: inherit; }
+    .skip-link { position: fixed; left: 1rem; top: -5rem; z-index: 100; padding: .8rem 1rem; background: #fff; color: #000; }
+    .skip-link:focus { top: 1rem; }
+    .nav {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem max(1.25rem, calc((100vw - var(--max))/2));
+      background: linear-gradient(#080808e8, transparent);
+    }
+    .mark { text-decoration: none; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 1.6rem; align-items: center; }
+    .nav-links a { text-decoration: none; color: #d0d0ce; font-size: .9rem; }
+    .nav-links a:hover, .nav-links a:focus-visible { color: #fff; }
+    .hero {
+      min-height: 100svh;
+      position: relative;
+      display: grid;
+      align-items: end;
+      isolation: isolate;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+    }
+    .hero-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; z-index: -2; filter: contrast(1.08); }
+    .hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(0,0,0,.15), rgba(0,0,0,.05)), linear-gradient(0deg, rgba(0,0,0,.86), transparent 52%); }
+    .hero-copy { width: min(var(--max), calc(100% - 2.5rem)); margin: 0 auto; padding: 8rem 0 3.5rem; }
+    .eyebrow { margin: 0 0 1rem; color: #c8c8c5; font-size: .8rem; letter-spacing: .18em; text-transform: uppercase; }
+    h1 { margin: 0; font: 400 clamp(3.4rem, 11vw, 9rem)/.88 Georgia, "Times New Roman", serif; letter-spacing: -.055em; }
+    .hero-note { width: min(33rem, 100%); margin: 1.6rem 0 0; font-size: clamp(1rem, 1.6vw, 1.25rem); color: #d3d3d0; }
+    .section { width: min(var(--max), calc(100% - 2.5rem)); margin: 0 auto; padding: clamp(4.5rem, 9vw, 8rem) 0; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 2rem; margin-bottom: 2rem; }
+    .section-kicker { display: block; margin-bottom: .7rem; color: var(--muted); font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; }
+    h2 { margin: 0; font: 400 clamp(2.3rem, 5vw, 4.8rem)/1 Georgia, "Times New Roman", serif; letter-spacing: -.04em; }
+    .section-note { max-width: 27rem; margin: 0; color: var(--muted); }
+    .tools-card { position: relative; overflow: hidden; border: 1px solid var(--line); border-radius: 1.25rem; background: #000; }
+    .tools-card img { width: 100%; aspect-ratio: 1440/1085; object-fit: cover; transition: transform .7s cubic-bezier(.2,.8,.2,1); }
+    .tools-card:hover img { transform: scale(1.015); }
+    .works { border-top: 1px solid var(--line); }
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1.25rem; }
+    .project { grid-column: span 6; min-width: 0; }
+    .project:first-child { grid-column: span 12; }
+    .project:nth-child(4) { grid-column: span 7; }
+    .project:nth-child(5) { grid-column: span 5; }
+    .project-button {
+      width: 100%; padding: 0; border: 1px solid var(--line); border-radius: 1rem; overflow: hidden; background: var(--surface); color: inherit; cursor: zoom-in; text-align: left;
+    }
+    .project-media { overflow: hidden; background: #ececea; }
+    .project-media img { width: 100%; aspect-ratio: 1440/1085; object-fit: cover; transition: transform .55s cubic-bezier(.2,.8,.2,1); }
+    .project-button:hover .project-media img, .project-button:focus-visible .project-media img { transform: scale(1.025); }
+    .project-meta { display: flex; justify-content: space-between; gap: 1rem; padding: 1rem 1.05rem 1.1rem; }
+    .project-title { font-weight: 600; }
+    .project-index { color: var(--muted); font-variant-numeric: tabular-nums; }
+    .cta { display: flex; justify-content: space-between; align-items: center; gap: 2rem; padding-bottom: clamp(4rem,8vw,7rem); }
+    .behance { display: inline-flex; align-items: center; gap: .7rem; flex: none; padding: .9rem 1.25rem; border-radius: 999px; border: 1px solid #fff; text-decoration: none; transition: background .2s, color .2s; }
+    .behance:hover, .behance:focus-visible { background: #fff; color: #000; }
+    .behance span { font-size: 1.25rem; line-height: 1; }
+    footer { border-top: 1px solid var(--line); color: var(--muted); }
+    footer .section { padding: 1.35rem 0; display: flex; justify-content: space-between; font-size: .85rem; }
+    dialog { width: min(94vw, 1320px); max-height: 94vh; padding: 0; border: 1px solid rgba(255,255,255,.2); border-radius: 1rem; background: #0b0b0b; color: #fff; box-shadow: 0 30px 100px #000; overflow: hidden; }
+    dialog::backdrop { background: rgba(0,0,0,.86); backdrop-filter: blur(8px); }
+    .modal-bar { display: flex; align-items: center; justify-content: space-between; padding: .75rem 1rem; border-bottom: 1px solid var(--line); }
+    .modal-title { margin: 0; font-size: .95rem; }
+    .close { width: 2.5rem; height: 2.5rem; border: 1px solid var(--line); border-radius: 50%; background: transparent; color: #fff; cursor: pointer; }
+    .modal-scroll { max-height: calc(94vh - 4rem); overflow: auto; background: #e7e7e5; }
+    .modal-scroll img { width: 100%; height: auto; }
+    @media (max-width: 760px) {
+      .nav-links a:not(.behance-nav) { display: none; }
+      .hero { min-height: 82svh; }
+      .hero-image { object-position: 32% center; }
+      .hero-copy { padding-bottom: 2rem; }
+      .section-head, .cta { align-items: flex-start; flex-direction: column; }
+      .project, .project:first-child, .project:nth-child(4), .project:nth-child(5) { grid-column: span 12; }
+      .project-meta { padding: .85rem .9rem .95rem; }
+      footer .section { flex-direction: column; gap: .2rem; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#works">К работам</a>
+  <header class="nav" aria-label="Главная навигация">
+    <a class="mark" href="#top">Portfolio</a>
+    <nav class="nav-links">
+      <a href="#tools">Инструменты</a>
+      <a href="#works">Работы</a>
+      <a class="behance-nav" href="https://www.behance.net/gallery/252262137/brending-i-veb-dizajn-dlja-prostransva-kresty" target="_blank" rel="noreferrer">Behance ↗</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <img class="hero-image" src="assets/work-1.webp" alt="Серебряная обложка портфолио с декоративным орнаментом">
+      <div class="hero-copy">
+        <p class="eyebrow">Графический дизайн</p>
+        <h1 id="hero-title">Портфолио</h1>
+        <p class="hero-note">Фирменный стиль, логотипы, дизайн для маркетплейсов, социальных сетей и печати.</p>
+      </div>
+    </section>
+
+    <section class="section" id="tools" aria-labelledby="tools-title">
+      <div class="section-head">
+        <div><span class="section-kicker">Инструменты</span><h2 id="tools-title">Визуальный арсенал</h2></div>
+        <p class="section-note">CorelDRAW, Photoshop, After Effects, Illustrator и Procreate.</p>
+      </div>
+      <div class="tools-card"><img src="assets/work-2.webp" alt="Программы дизайнера: CorelDRAW, Photoshop, After Effects, Illustrator и Procreate" loading="lazy"></div>
+    </section>
+
+    <section class="works" id="works" aria-labelledby="works-title">
+      <div class="section">
+        <div class="section-head">
+          <div><span class="section-kicker">Избранное</span><h2 id="works-title">Работы</h2></div>
+          <p class="section-note">Нажмите на проект, чтобы рассмотреть его крупнее.</p>
+        </div>
+        <div class="grid">
+          <article class="project"><button class="project-button" data-image="assets/work-3.webp" data-title="Создание логотипа и фирменного стиля"><span class="project-media"><img src="assets/work-3.webp" alt="Проект по созданию логотипа и фирменного стиля" loading="lazy"></span><span class="project-meta"><span class="project-title">Логотип и фирменный стиль</span><span class="project-index">01</span></span></button></article>
+          <article class="project"><button class="project-button" data-image="assets/work-4.webp" data-title="Логотип для ювелирного бренда"><span class="project-media"><img src="assets/work-4.webp" alt="Красный логотип для ювелирного бренда и упаковка кольца" loading="lazy"></span><span class="project-meta"><span class="project-title">Ювелирный бренд</span><span class="project-index">02</span></span></button></article>
+          <article class="project"><button class="project-button" data-image="assets/work-5.webp" data-title="Карточки для маркетплейсов"><span class="project-media"><img src="assets/work-5.webp" alt="Карточки товаров для маркетплейсов" loading="lazy"></span><span class="project-meta"><span class="project-title">Карточки маркетплейсов</span><span class="project-index">03</span></span></button></article>
+          <article class="project"><button class="project-button" data-image="assets/work-6.webp" data-title="Исторические посты для социальных сетей"><span class="project-media"><img src="assets/work-6.webp" alt="Серии исторических постов для социальных сетей" loading="lazy"></span><span class="project-meta"><span class="project-title">Посты для соцсетей</span><span class="project-index">04</span></span></button></article>
+          <article class="project"><button class="project-button" data-image="assets/work-7.webp" data-title="Дизайн визиток"><span class="project-media"><img src="assets/work-7.webp" alt="Подборка дизайнов визиток" loading="lazy"></span><span class="project-meta"><span class="project-title">Визитки</span><span class="project-index">05</span></span></button></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta" aria-labelledby="more-title">
+      <div><span class="section-kicker">Больше проектов</span><h2 id="more-title">Продолжение — на Behance</h2></div>
+      <a class="behance" href="https://www.behance.net/gallery/252262137/brending-i-veb-dizajn-dlja-prostransva-kresty" target="_blank" rel="noreferrer">Открыть профиль <span aria-hidden="true">↗</span></a>
+    </section>
+  </main>
+
+  <footer><div class="section"><span>Портфолио графического дизайнера</span><span>2026</span></div></footer>
+
+  <dialog id="lightbox" aria-labelledby="modal-title">
+    <div class="modal-bar"><p class="modal-title" id="modal-title"></p><button class="close" type="button" aria-label="Закрыть">×</button></div>
+    <div class="modal-scroll"><img id="modal-image" alt=""></div>
+  </dialog>
+
+  <script>
+    const dialog = document.querySelector('#lightbox');
+    const modalImage = document.querySelector('#modal-image');
+    const modalTitle = document.querySelector('#modal-title');
+    document.querySelectorAll('.project-button').forEach((button) => {
+      button.addEventListener('click', () => {
+        modalImage.src = button.dataset.image;
+        modalImage.alt = button.dataset.title;
+        modalTitle.textContent = button.dataset.title;
+        dialog.showModal();
+      });
+    });
+    document.querySelector('.close').addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+  </script>
+</body>
+</html>
